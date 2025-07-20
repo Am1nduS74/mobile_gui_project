@@ -2,15 +2,8 @@ import 'package:flutter/material.dart';
 import 'Data/Database.dart';
 import 'Data/DAO/CarDAO.dart';
 import 'Data/Entity/Car_list.dart';
+import 'main.dart';
 
-late AppDatabase database;
-
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
-
-}
   class CarListAddPage extends StatefulWidget {
   const CarListAddPage({super.key});
 
@@ -27,13 +20,32 @@ class _CarListPageState extends State<CarListAddPage> {
   Future<void> addCar() async {
     final brand = _brand.text;
     final model = _model.text;
-    final passengers = _passengers.text;
-    final size = _size.text;
+    final nuOfPassengers = _passengers.text;
+    final tankSize = _size.text;
 
-    final newCar = CarList(DateTime.now().millisecondsSinceEpoch, brand, model, passengers, size);
+    if(brand.isEmpty || model.isEmpty || nuOfPassengers.isEmpty || tankSize.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please complete all the fields !! ')),
+      );
+      return;
+    }
+    final parsedPassengers = int.tryParse(nuOfPassengers);
+    final parsedTankSize = double.tryParse(tankSize);
+
+    if (parsedPassengers == null || parsedTankSize == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Invalid format')),
+      );
+      return;
+    }
+    final newCar = CarList(DateTime.now().millisecondsSinceEpoch, brand, model, parsedPassengers, parsedTankSize);
     await database.carDAO.insertCar(newCar);
 
-    final newItems = await database.carDAO.getAllCars();
+    ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Car Added Successfully!')),
+    );
+    Navigator.pop(context);
+
   }
 
   @override

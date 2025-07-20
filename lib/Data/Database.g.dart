@@ -96,7 +96,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `CarList` (`id` INTEGER NOT NULL, `brand` TEXT NOT NULL, `model` TEXT NOT NULL, `nuOfPassengers` TEXT NOT NULL, `tankSize` TEXT NOT NULL, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `CarList` (`id` INTEGER NOT NULL, `brand` TEXT NOT NULL, `model` TEXT NOT NULL, `nuOfPassengers` INTEGER NOT NULL, `tankSize` REAL NOT NULL, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -167,8 +167,8 @@ class _$CarDAO extends CarDAO {
             row['id'] as int,
             row['brand'] as String,
             row['model'] as String,
-            row['nuOfPassengers'] as String,
-            row['tankSize'] as String));
+            row['nuOfPassengers'] as int,
+            row['tankSize'] as double));
   }
 
   @override

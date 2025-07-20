@@ -7,8 +7,8 @@ class CarList {
   int id;
   String brand;
   String model;
-  String nuOfPassengers;
-  String tankSize;
+  int nuOfPassengers;
+  double tankSize;
 
 
   CarList(this.id, this.brand, this.model, this.nuOfPassengers, this.tankSize);
