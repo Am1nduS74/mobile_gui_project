@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_gui_project/Data/Entity/Car_list.dart';
 import 'Data/Database.dart';
 import 'CarListAddPage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 late AppDatabase database;
 
@@ -23,9 +24,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.greenAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purpleAccent),
+          textTheme: GoogleFonts.averageSansTextTheme(),
       ),
       home: const MyHomePage(title: 'Car List'),
+
     );
   }
 }
@@ -63,6 +66,13 @@ class _MyHomePageState extends State<MyHomePage> {
     await _loadCars();
   }
 
+  void viewCar(CarList car) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) =>CarListAddPage(editCar: car),
+    ),
+    ).then((_) async {
+      await _loadCars();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,23 +112,33 @@ class _MyHomePageState extends State<MyHomePage> {
                               },
                             );
                           },
-                           child: Row(
-                             mainAxisAlignment: MainAxisAlignment.center,
-                             children: [
-                               Text('${index+1}:Brand: ${item.brand}', style: TextStyle(fontSize: 35),),
-                               SizedBox(width: 50),
-                               Text('Model: ${item.model}', style: TextStyle(fontSize: 35),),
-                               SizedBox(width: 50),
-                               Text('Max Passengers: ${item.nuOfPassengers}', style: TextStyle(fontSize: 35),),
-                               SizedBox(width: 50),
-                               Text('Tank size: ${item.tankSize} litres', style: TextStyle(fontSize: 35),),
-                               SizedBox(width: 50),
-                             ],
-                           ),
+                             onTap: (){
+                               final item = items[index];
+                               viewCar(item);
+                             },
+                             child: Card(
+                              elevation: 8,
+                              margin: EdgeInsets.symmetric(vertical: 8),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(child: Text('${index+1}:Brand: ${item.brand}', style: GoogleFonts.averageSans( textStyle: const TextStyle(fontSize: 40)),),),
+                                    Expanded(child: Text('Model: ${item.model}', style: GoogleFonts.averageSans( textStyle: const TextStyle(fontSize: 40)),),),
+                                    Expanded(child:  Text('Max Passengers: ${item.nuOfPassengers}', style: GoogleFonts.averageSans( textStyle: const TextStyle(fontSize: 40)),),),
+                                    Expanded(child: Text('Tank size: ${item.tankSize} litres', style: GoogleFonts.averageSans( textStyle: const TextStyle(fontSize: 40)),),)
+                                   ],
+                                ),
+                              )
+                             )
                            );
                         }),
                 ),
-                ElevatedButton(
+                SizedBox(
+                width: double.infinity,
+                height: 50,
+                child:ElevatedButton(
                   onPressed: () async {
                     await Navigator.push(
                       context,
@@ -126,8 +146,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
                     _loadCars();
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size(100, 60),
+                    textStyle: const TextStyle(fontSize: 20),
+                  ),
                   child: Text('Click Here to Add a Car'),
                 ),
+                )
               ],
             ),
       ),
