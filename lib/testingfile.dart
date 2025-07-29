@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:encrypt_shared_preferences/encrypt_shared_preferences.dart';
+import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'package:intl/intl.dart';
 
 import 'customer_dao.dart';
 import 'app_database.dart';
-import 'customer.dart';
+import 'customer_list.dart';
 
 /// The main page for listing, adding, updating and deleting customers.
 /// Supports encrypted shared preferences, localization, snackbar, alert dialogs, and proper Floor integration.
@@ -29,7 +29,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _birthdayController = TextEditingController();
 
-  final EncryptSharedPreferences _encryptedPrefs = EncryptSharedPreferences();
+  final EncryptedSharedPreferences _encryptedPrefs = EncryptedSharedPreferences();
 
   @override
   void initState() {
