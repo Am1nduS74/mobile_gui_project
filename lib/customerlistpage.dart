@@ -127,7 +127,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
                   child: TextField(
                     controller: firstNameController,
                     decoration: const InputDecoration(
-                      hintText: 'Type the item here',
+                      hintText: 'Type yourn firtname here',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -137,7 +137,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
                   child: TextField(
                     controller: lastNameController,
                     decoration: const InputDecoration(
-                      hintText: 'Type the quantity here',
+                      hintText: 'Type your lastname here',
                       border: OutlineInputBorder(),
                     ),
 
@@ -148,7 +148,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
                   child: TextField(
                     controller: addressController,
                     decoration: const InputDecoration(
-                      hintText: 'Type the quantity here',
+                      hintText: 'Type your address here',
                       border: OutlineInputBorder(),
                     ),
 
@@ -159,7 +159,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
                   child: TextField(
                     controller: birthdayController,
                     decoration: const InputDecoration(
-                      hintText: 'Type the quantity here',
+                      hintText: 'Type the birthday here',
                       border: OutlineInputBorder(),
                     ),
 
