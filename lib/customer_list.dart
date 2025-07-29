@@ -1,4 +1,6 @@
 import 'package:floor/floor.dart';
+
+@entity
 class Customerlist {
   @PrimaryKey(autoGenerate: true)
   final int? id;
