@@ -140,7 +140,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
                       hintText: 'Type the quantity here',
                       border: OutlineInputBorder(),
                     ),
-                    keyboardType: TextInputType.number,
+
                   ),
                 ),
 
@@ -163,7 +163,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
                     final item = _customers[index];
                     return ListTile(
                       title: Text(
-                        '${index + 1}: ${item.name}  quantity: ${item.quantity}',
+                        '${index + 1}: ${item.firstName}  quantity: ${item.lastName}',
                         style: const TextStyle(fontSize: 16),
                       ),
                       onLongPress: () => _showDeleteDialog(index),
