@@ -3,17 +3,17 @@ import 'customer_list.dart';
 
 @dao
 abstract class CustomerDao {
-  @Query('SELECT * FROM ShoppingItem')
-  Future<List<Customerlist>> getAllItems();
+  @Query('SELECT * FROM CustomerList')
+  Future<List<Customerlist>> getAllCustomers();
 
   @insert
-  Future<void> insertItem(Customerlist custList);
+  Future<void> insertCustomer(Customerlist custList);
 
   @update
-  Future<void> updateItem(Customerlist custList);
+  Future<void> updateCustomer(Customerlist custList);
 
   @delete
-  Future<void> deleteItem(Customerlist custlist);
+  Future<void> deleteCustomer(Customerlist custlist);
 }
 
 
