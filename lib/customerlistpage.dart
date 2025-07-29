@@ -143,6 +143,28 @@ class _CustomerListPageState extends State<CustomerListPage> {
 
                   ),
                 ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: TextField(
+                    controller: addressController,
+                    decoration: const InputDecoration(
+                      hintText: 'Type the quantity here',
+                      border: OutlineInputBorder(),
+                    ),
+
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: TextField(
+                    controller: birthdayController,
+                    decoration: const InputDecoration(
+                      hintText: 'Type the quantity here',
+                      border: OutlineInputBorder(),
+                    ),
+
+                  ),
+                ),
 
                 Expanded (/***/
                   child: ElevatedButton(
@@ -163,7 +185,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
                     final item = _customers[index];
                     return ListTile(
                       title: Text(
-                        '${index + 1}: ${item.firstName}  quantity: ${item.lastName}',
+                        '${index + 1}: firstname ${item.firstName}, lastname: ${item.lastName}, address: ${item.address}, ${item.birthday}',
                         style: const TextStyle(fontSize: 16),
                       ),
                       onLongPress: () => _showDeleteDialog(index),
