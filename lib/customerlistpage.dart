@@ -185,7 +185,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
                     final item = _customers[index];
                     return ListTile(
                       title: Text(
-                        '${index + 1}: firstname ${item.firstName}, lastname: ${item.lastName}, address: ${item.address}, ${item.birthday}',
+                        '${index + 1}: Firstname ${item.firstName}, Lastname: ${item.lastName}, Address: ${item.address}, Birthday: ${item.birthday}',
                         style: const TextStyle(fontSize: 16),
                       ),
                       onLongPress: () => _showDeleteDialog(index),
