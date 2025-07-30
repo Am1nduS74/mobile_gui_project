@@ -20,8 +20,8 @@ class CustomerListPage extends StatefulWidget {
 
 class _CustomerListPageState extends State<CustomerListPage> {
   late CustomerDao _customerDao;
-  List<Customer> _customers = [];
-  Customer? _selectedCustomer;
+  List<Customerlist> _customers = [];
+  Customerlist? _selectedCustomer;
 
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _firstNameController = TextEditingController();
@@ -45,7 +45,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
   }
 
   Future<void> _loadCustomers() async {
-    final list = await _customerDao.findAllCustomers();
+    final list = await _customerDao.getAllCustomers();
     setState(() {
       _customers = list;
     });
@@ -72,12 +72,12 @@ class _CustomerListPageState extends State<CustomerListPage> {
 
   void _addCustomer() async {
     if (_formKey.currentState!.validate()) {
-      final newCustomer = Customer(
-        null,
-        _firstNameController.text,
-        _lastNameController.text,
-        _addressController.text,
-        _birthdayController.text,
+      final newCustomer = Customerlist(
+       id:  null,
+       firstName:  _firstNameController.text,
+       lastName:  _lastNameController.text,
+       address:  _addressController.text,
+       birthday:  _birthdayController.text,
       );
       await _customerDao.insertCustomer(newCustomer);
       _showSnackbar('Customer added.');
@@ -89,12 +89,12 @@ class _CustomerListPageState extends State<CustomerListPage> {
 
   void _updateCustomer() async {
     if (_formKey.currentState!.validate() && _selectedCustomer != null) {
-      final updatedCustomer = Customer(
-        _selectedCustomer!.id,
-        _firstNameController.text,
-        _lastNameController.text,
-        _addressController.text,
-        _birthdayController.text,
+      final updatedCustomer = Customerlist(
+       id:  _selectedCustomer!.id,
+       firstName:  _firstNameController.text,
+       lastName:  _lastNameController.text,
+       address:  _addressController.text,
+       birthday:  _birthdayController.text,
       );
       await _customerDao.updateCustomer(updatedCustomer);
       _showSnackbar('Customer updated.');
