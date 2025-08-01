@@ -3,6 +3,7 @@ import 'package:mobile_gui_project/Data/Entity/Car_list.dart';
 import 'Data/Database.dart';
 import 'CarListAddPage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'home.dart';
 
 late AppDatabase database;
 
@@ -24,10 +25,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purpleAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
           textTheme: GoogleFonts.averageSansTextTheme(),
       ),
-      home: const MyHomePage(title: 'Car List'),
+      home: const HomePage(title: 'Car List'),
 
     );
   }
