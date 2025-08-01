@@ -4,10 +4,12 @@ import 'Data/DAO/CarDAO.dart';
 import 'Data/Entity/Car_list.dart';
 import 'main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 
   class CarListAddPage extends StatefulWidget {
     final CarList? editCar;
-  const CarListAddPage({super.key, this.editCar});
+    final CarList? copyCar;
+  const CarListAddPage({super.key, this.editCar, this.copyCar});
 
 
   @override
@@ -20,7 +22,9 @@ class _CarListPageState extends State<CarListAddPage> {
   final TextEditingController _passengers = TextEditingController();
   final TextEditingController _size = TextEditingController();
 
+
   bool get isEditing => widget.editCar != null;
+  bool get isCopying => widget.copyCar != null;
 
   @override
   void initState() {
@@ -31,6 +35,13 @@ class _CarListPageState extends State<CarListAddPage> {
       _model.text = widget.editCar!.model;
       _passengers.text = widget.editCar!.nuOfPassengers.toString();
       _size.text = widget.editCar!.tankSize.toString();
+    }
+
+    if (isCopying) {
+      _brand.text = widget.copyCar!.brand;
+      _model.text = widget.copyCar!.model;
+      _passengers.text = widget.copyCar!.nuOfPassengers.toString();
+      _size.text = widget.copyCar!.tankSize.toString();
     }
   }
 
@@ -78,8 +89,13 @@ class _CarListPageState extends State<CarListAddPage> {
       }
       else {
         final newCar = CarList(DateTime.now().millisecondsSinceEpoch, brand, model, parsedPassengers, parsedTankSize);
-
         await database.carDAO.insertCar(newCar);
+        final encryptedPrefs = EncryptedSharedPreferences();
+
+        await encryptedPrefs.setString('lastBrand', brand);
+        await encryptedPrefs.setString('lastModel', model);
+        await encryptedPrefs.setString('lastNuPassengers', parsedPassengers.toString());
+        await encryptedPrefs.setString('lastTankSize', parsedTankSize.toString());
 
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Car Added Successfully!')),

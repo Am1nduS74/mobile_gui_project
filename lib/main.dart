@@ -1,3 +1,4 @@
+import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_gui_project/Data/Entity/Car_list.dart';
 import 'Data/Database.dart';
@@ -74,6 +75,24 @@ class _MyHomePageState extends State<MyHomePage> {
       await _loadCars();
     });
   }
+
+  Future<CarList?> copyCar() async{
+    final prefs = EncryptedSharedPreferences();
+    final brand = await prefs.getString('lastBrand') ?? '';
+    final model = await prefs.getString('lastModel') ?? '';
+    final passengers = await prefs.getString('lastNuPassengers') ?? '';
+    final tank = await prefs.getString('lastTankSize') ?? '';
+
+    final parsedPassengers = int.tryParse(passengers);
+    final parsedTankSize = double.tryParse(tank);
+
+    if(parsedPassengers == null || parsedTankSize == null) {
+      return null;
+    }
+    return CarList(DateTime.now().millisecondsSinceEpoch, brand, model, parsedPassengers, parsedTankSize);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,11 +160,44 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 50,
                 child:ElevatedButton(
                   onPressed: () async {
+                    final copiedCar = await copyCar();
+
+                    if(copiedCar != null) {
+                      showDialog(context: context,
+                          builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text("Do you want to copy the previous car ?"),
+                          actions: [
+                            TextButton(onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => CarListAddPage()),
+                              ).then((_) => _loadCars());
+                            },
+                                child: const Text('No'),
+                            ),
+                            TextButton(onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => CarListAddPage(copyCar: copiedCar)),
+                              ).then((_) => _loadCars());
+                            },
+                              child: const Text('Yes'),
+                            ),
+                          ],
+                        );
+                          }
+                      );
+                    }
+                    else {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => CarListAddPage()),
                     );
                     _loadCars();
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
@@ -154,7 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     textStyle: const TextStyle(fontSize: 20),
                   ),
                   child: Text('Click Here to Add a Car'),
-                ),
+                )
                 )
               ],
             ),
