@@ -1,5 +1,5 @@
 import 'CarListAddPage.dart';
-import 'main.dart';
+import 'CarListPage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const MyHomePage(title: 'Car List'),
+                    builder: (context) => const MyHomePage(),
                   ),
                 );
               },
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyHomePage(title: 'Car List'),
+                      builder: (context) => const MyHomePage(),
                     ),
                   );
                 },
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyHomePage(title: 'Car List'),
+                      builder: (context) => const MyHomePage(),
                     ),
                   );
                 },
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyHomePage(title: 'Car List'),
+                      builder: (context) => const MyHomePage(),
                     ),
                   );
                 },

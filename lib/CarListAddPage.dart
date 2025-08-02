@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'Data/Database.dart';
 import 'Data/DAO/CarDAO.dart';
 import 'Data/Entity/Car_list.dart';
-import 'main.dart';
+import 'CarListPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
+import 'app_localizations.dart';
 
   class CarListAddPage extends StatefulWidget {
     final CarList? editCar;
@@ -49,7 +50,7 @@ class _CarListPageState extends State<CarListAddPage> {
     if (isEditing) {
       await database.carDAO.deleteCar(widget.editCar!);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Car deleted successfully !! ')),
+         SnackBar(content: Text(AppLocalizations.of(context)!.translate('car_deleted_success'))),
       );
       Navigator.pop(context);
     }
@@ -64,7 +65,7 @@ class _CarListPageState extends State<CarListAddPage> {
       if (brand.isEmpty || model.isEmpty || nuOfPassengers.isEmpty ||
           tankSize.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Please complete all the fields !! ')),
+           SnackBar(content: Text(AppLocalizations.of(context)!.translate('complete_all_fields'))),
         );
         return;
       }
@@ -73,7 +74,7 @@ class _CarListPageState extends State<CarListAddPage> {
 
       if (parsedPassengers == null || parsedTankSize == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Invalid format')),
+          SnackBar(content: Text(AppLocalizations.of(context)!.translate('invalid_format'))),
         );
         return;
       }
@@ -83,7 +84,7 @@ class _CarListPageState extends State<CarListAddPage> {
         await database.carDAO.updateCar(updatedCar);
 
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Car Updated Successfully!')),
+           SnackBar(content: Text(AppLocalizations.of(context)!.translate('car_updated_success'))),
         );
         Navigator.pop(context);
       }
@@ -98,7 +99,7 @@ class _CarListPageState extends State<CarListAddPage> {
         await encryptedPrefs.setString('lastTankSize', parsedTankSize.toString());
 
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Car Added Successfully!')),
+           SnackBar(content: Text(AppLocalizations.of(context)!.translate('car_added_success'))),
         );
         Navigator.pop(context);
       }
@@ -107,26 +108,26 @@ class _CarListPageState extends State<CarListAddPage> {
     @override
     Widget build(BuildContext context) {
       return Scaffold(
-        appBar: AppBar(title:Text(isEditing ? 'Update the Car' : 'Add a new car')),
+        appBar: AppBar(title:Text(isEditing ? AppLocalizations.of(context)!.translate('update_car_title') : AppLocalizations.of(context)!.translate('add_car_title'))),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               TextField(controller: _brand,
-                decoration: const InputDecoration(
-                    labelText: "Car Brand", border: OutlineInputBorder()),),
+                decoration:  InputDecoration(
+                    labelText: AppLocalizations.of(context)!.translate('car_brand'), border: OutlineInputBorder()),),
               SizedBox(height: 10),
               TextField(controller: _model,
-                decoration: const InputDecoration(
-                    labelText: "Car Model", border: OutlineInputBorder()),),
+                decoration:  InputDecoration(
+                    labelText: AppLocalizations.of(context)!.translate('car_model'), border: OutlineInputBorder()),),
               SizedBox(height: 10),
               TextField(controller: _passengers,
-                decoration: const InputDecoration(
-                    labelText: "Number of Passengers",
+                decoration:  InputDecoration(
+                    labelText: AppLocalizations.of(context)!.translate('number_of_passengers'),
                     border: OutlineInputBorder()),),
               SizedBox(height: 10),
               TextField(controller: _size,
-                decoration: const InputDecoration(labelText: "Size of the tank",
+                decoration:  InputDecoration(labelText: AppLocalizations.of(context)!.translate('tank_size_label'),
                     border: OutlineInputBorder()),),
               SizedBox(height: 10),
               Center(
@@ -137,7 +138,7 @@ class _CarListPageState extends State<CarListAddPage> {
                     minimumSize: const Size(100, 60),
                     textStyle: const TextStyle(fontSize: 20),
                   ),
-                  child: Text(isEditing ? 'Update  Car' : 'Add Car'),
+                  child: Text(isEditing ? AppLocalizations.of(context)!.translate('update_car_button') : AppLocalizations.of(context)!.translate('add_car_button')),
                 ),
               ),
               SizedBox(height: 10),
@@ -148,22 +149,22 @@ class _CarListPageState extends State<CarListAddPage> {
                     builder: (BuildContext context) {
 
                       return AlertDialog(
-                        title: Text('Delete Car'),
+                        title: Text(AppLocalizations.of(context)!.translate('delete_car_title')),
                         content: Text(
-                            'Are you sure you want to delete the car?'),
+                            AppLocalizations.of(context)!.translate('delete_car_confirmation')),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: Text('Cancel'),
+                            child: Text(AppLocalizations.of(context)!.translate('cancel')),
                           ),
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context);
                               removeCars();
                             },
-                            child: Text('Proceed'),
+                            child: Text(AppLocalizations.of(context)!.translate('proceed')),
                           ),
                         ],
                       );
@@ -176,7 +177,7 @@ class _CarListPageState extends State<CarListAddPage> {
                     minimumSize: const Size(100, 60),
                     textStyle: const TextStyle(fontSize: 20),
                   ),
-                  child: Text('Delete Car'),
+                  child: Text(AppLocalizations.of(context)!.translate('delete_car_button')),
                 ),
             ],
           ),
