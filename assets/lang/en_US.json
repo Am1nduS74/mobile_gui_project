@@ -1,0 +1,23 @@
+{
+  "app_title": "Sales List Page",
+  "customer_id": "Customer ID",
+  "car_id": "Car ID",
+  "dealership_id": "Dealership ID",
+  "date": "Date",
+  "save": "Save",
+  "update": "Update",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "close": "Close",
+  "no_sales": "No sales records yet. Add one using the form above.",
+  "instructions_title": "Instructions",
+  "instructions_content": "Fill out all fields and tap Save to add a record. Tap an item to edit or view it.",
+  "delete_title": "Delete Item",
+  "delete_content": "Do you want to delete this record?",
+  "yes": "Yes",
+  "no": "No",
+  "record_saved": "Sales record saved",
+  "record_deleted": "Sales record deleted",
+  "record_updated": "Sales record updated",
+  "select_record": "Select a record to see details"
+}
