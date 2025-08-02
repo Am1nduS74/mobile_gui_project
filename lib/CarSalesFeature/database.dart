@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:floor/floor.dart';
-import 'package:mobile_gui_project/salesDao.dart';
+import 'package:mobile_gui_project/CarSalesFeature/Data/DAO/salesDao.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
-import 'package:mobile_gui_project/salesRecord.dart';
+import 'package:mobile_gui_project/CarSalesFeature/Data/Entity/salesRecord.dart';
 
 part 'database.g.dart';
 

@@ -1,9 +1,9 @@
 // main.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:mobile_gui_project/database.dart';
-import 'package:mobile_gui_project/salesDao.dart';
-import 'package:mobile_gui_project/salesRecord.dart';
+import 'package:mobile_gui_project/CarSalesFeature/database.dart';
+import 'package:mobile_gui_project/CarSalesFeature/Data/DAO/salesDao.dart';
+import 'package:mobile_gui_project/CarSalesFeature/Data/Entity/salesRecord.dart';
 import 'dart:convert';
 
 void main() {

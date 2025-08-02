@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:mobile_gui_project/salesRecord.dart';
+import 'package:mobile_gui_project/CarSalesFeature/Data/Entity/salesRecord.dart';
 
 @dao
 abstract class SalesDao {
