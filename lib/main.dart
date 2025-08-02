@@ -341,13 +341,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Stack(
         children: [
-          Positioned.fill(
-            child: Image.asset(
-              'assets/images/fedor.jpg', // Adjust path as needed
-              fit: BoxFit.fitHeight,
-              alignment: Alignment.centerRight,
-            ),
-          ),
           Container(
             color: Colors.white.withOpacity(0.05), // Optional white overlay for clarity
           ),
