@@ -7,8 +7,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:mobile_gui_project/Amindu/main.dart';
+import 'package:mobile_gui_project/CarListFeature/main.dart';
+import 'package:mobile_gui_project/CarSalesFeature/database.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

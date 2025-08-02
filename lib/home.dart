@@ -1,6 +1,7 @@
-import 'CarListAddPage.dart';
-import 'main.dart';
+import 'CarListFeature/CarListAddPage.dart';
+import 'CarListFeature/main.dart' as amindu;
 import 'package:flutter/material.dart';
+import 'CarSalesFeature/main.dart' as john;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -61,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const MyHomePage(),
+                    builder: (context) => const amindu.MyHomePage(),
                   ),
                 );
               },
@@ -74,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyHomePage(),
+                      builder: (context) => const amindu.MyHomePage(),
                     ),
                   );
                 },
@@ -87,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyHomePage(),
+                      builder: (context) => const amindu.MyHomePage(),
                     ),
                   );
                 },
@@ -100,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyHomePage(),
+                      builder: (context) => const john.MyHomePage(title: 'Sales List Page'),
                     ),
                   );
                 },

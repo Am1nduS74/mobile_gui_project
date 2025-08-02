@@ -1,10 +1,10 @@
 import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_gui_project/Amindu/Data/Entity/Car_list.dart';
+import 'package:mobile_gui_project/CarListFeature/Data/Entity/Car_list.dart';
 import 'Data/Database.dart';
 import 'CarListAddPage.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'home.dart';
+import '../home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app_localizations.dart';
 
