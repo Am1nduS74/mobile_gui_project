@@ -1,6 +1,6 @@
 import 'package:floor/floor.dart';
 import 'customer_list.dart';
-
+//ifeanyi nnalue
 @dao
 abstract class CustomerDao {
   @Query('SELECT * FROM CustomerList')

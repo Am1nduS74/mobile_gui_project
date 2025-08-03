@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-
+//ifeanyi nnalue
 @entity
 class Customerlist {
   @PrimaryKey(autoGenerate: true)
