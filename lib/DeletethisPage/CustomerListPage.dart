@@ -73,11 +73,11 @@ class _CustomerListPageState extends State<CustomerListPage> {
   void _addCustomer() async {
     if (_formKey.currentState!.validate()) {
       final newCustomer = Customerlist(
-        id: null,
-        firstName: _firstNameController.text,
-        lastName: _lastNameController.text,
-        address: _addressController.text,
-        birthday: _birthdayController.text,
+       id:  null,
+       firstName:  _firstNameController.text,
+       lastName:  _lastNameController.text,
+       address:  _addressController.text,
+       birthday:  _birthdayController.text,
       );
       await _customerDao.insertCustomer(newCustomer);
       _showSnackbar('Customer added.');
@@ -90,11 +90,11 @@ class _CustomerListPageState extends State<CustomerListPage> {
   void _updateCustomer() async {
     if (_formKey.currentState!.validate() && _selectedCustomer != null) {
       final updatedCustomer = Customerlist(
-        id: _selectedCustomer!.id,
-        firstName: _firstNameController.text,
-        lastName: _lastNameController.text,
-        address: _addressController.text,
-        birthday: _birthdayController.text,
+       id:  _selectedCustomer!.id,
+       firstName:  _firstNameController.text,
+       lastName:  _lastNameController.text,
+       address:  _addressController.text,
+       birthday:  _birthdayController.text,
       );
       await _customerDao.updateCustomer(updatedCustomer);
       _showSnackbar('Customer updated.');
@@ -138,81 +138,6 @@ class _CustomerListPageState extends State<CustomerListPage> {
     );
   }
 
-  // #ADDED: Build the customer list widget
-  Widget _buildCustomerListView() {
-    return ListView.builder(
-      itemCount: _customers.length,
-      itemBuilder: (_, index) {
-        final customer = _customers[index];
-        return ListTile(
-
-          title: Text('FullName: ${customer.firstName} ${customer.lastName}'),
-          subtitle: Text('Address: ${customer.address}, DateOFBirth: ${customer.birthday}'),
-          onTap: () {
-            setState(() {
-              _selectedCustomer = customer;
-              _firstNameController.text = customer.firstName;
-              _lastNameController.text = customer.lastName;
-              _addressController.text = customer.address;
-              _birthdayController.text = customer.birthday;
-            });
-          },
-        );
-      },
-    );
-  }
-
-  // #ADDED: Build the form widget
-  Widget _buildCustomerForm() {
-    return Form(
-      key: _formKey,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TextFormField(
-            controller: _firstNameController,
-            decoration: const InputDecoration(labelText: 'First Name'),
-            validator: (value) => value!.isEmpty ? 'Required' : null,
-          ),
-          TextFormField(
-            controller: _lastNameController,
-            decoration: const InputDecoration(labelText: 'Last Name'),
-            validator: (value) => value!.isEmpty ? 'Required' : null,
-          ),
-          TextFormField(
-            controller: _addressController,
-            decoration: const InputDecoration(labelText: 'Address'),
-            validator: (value) => value!.isEmpty ? 'Required' : null,
-          ),
-          TextFormField(
-            controller: _birthdayController,
-            decoration: const InputDecoration(labelText: 'Birthday (YYYY-MM-DD)'),
-            validator: (value) => value!.isEmpty ? 'Required' : null,
-          ),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                onPressed: _selectedCustomer == null ? _addCustomer : _updateCustomer,
-                child: Text(_selectedCustomer == null ? 'Add' : 'Update'),
-              ),
-              if (_selectedCustomer != null)
-                ElevatedButton(
-                  onPressed: _deleteCustomer,
-                  child: const Text('Delete'),
-                ),
-              TextButton(
-                onPressed: _clearForm,
-                child: const Text('Clear'),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -227,28 +152,76 @@ class _CustomerListPageState extends State<CustomerListPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: LayoutBuilder(
-          // #ADDED: Responsive layout
-          builder: (context, constraints) {
-            if (constraints.maxWidth > 720) {
-              // Tablet/Desktop: side-by-side layout
-              return Row(
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: _customers.length,
+                itemBuilder: (_, index) {
+                  final customer = _customers[index];
+                  return ListTile(
+                    title: Text('FullName: ${customer.firstName} ${customer.lastName}'),
+                    subtitle: Text('Address:'+ customer.address + ', DateOFBirth:' + customer.birthday),
+                    onTap: () {
+                      setState(() {
+                        _selectedCustomer = customer;
+                        _firstNameController.text = customer.firstName;
+                        _lastNameController.text = customer.lastName;
+                        _addressController.text = customer.address;
+                        _birthdayController.text = customer.birthday;
+                      });
+                    },
+                  );
+                },
+              ),
+            ),
+            Form(
+              key: _formKey,
+              child: Column(
                 children: [
-                  Expanded(child: _buildCustomerListView()),
-                  const VerticalDivider(),
-                  Expanded(child: SingleChildScrollView(child: _buildCustomerForm())),
+                  TextFormField(
+                    controller: _firstNameController,
+                    decoration: const InputDecoration(labelText: 'First Name'),
+                    validator: (value) => value!.isEmpty ? 'Required' : null,
+                  ),
+                  TextFormField(
+                    controller: _lastNameController,
+                    decoration: const InputDecoration(labelText: 'Last Name'),
+                    validator: (value) => value!.isEmpty ? 'Required' : null,
+                  ),
+                  TextFormField(
+                    controller: _addressController,
+                    decoration: const InputDecoration(labelText: 'Address'),
+                    validator: (value) => value!.isEmpty ? 'Required' : null,
+                  ),
+                  TextFormField(
+                    controller: _birthdayController,
+                    decoration: const InputDecoration(labelText: 'Birthday (YYYY-MM-DD)'),
+                    validator: (value) => value!.isEmpty ? 'Required' : null,
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: _selectedCustomer == null ? _addCustomer : _updateCustomer,
+                        child: Text(_selectedCustomer == null ? 'Add' : 'Update'),
+                      ),
+                      if (_selectedCustomer != null)
+                        ElevatedButton(
+                          onPressed: _deleteCustomer,
+                          child: const Text('Delete'),
+                        ),
+                      TextButton(
+                        onPressed: _clearForm,
+                        child: const Text('Clear'),
+                      ),
+                    ],
+                  )
                 ],
-              );
-            } else {
-              // Phone: vertical layout
-              return Column(
-                children: [
-                  Expanded(child: _buildCustomerListView()),
-                  SingleChildScrollView(child: _buildCustomerForm()),
-                ],
-              );
-            }
-          },
+              ),
+            ),
+          ],
         ),
       ),
     );
