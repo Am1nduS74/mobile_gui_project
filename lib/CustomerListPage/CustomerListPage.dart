@@ -160,8 +160,8 @@ class _CustomerListPageState extends State<CustomerListPage> {
                 itemBuilder: (_, index) {
                   final customer = _customers[index];
                   return ListTile(
-                    title: Text('${customer.firstName} ${customer.lastName}'),
-                    subtitle: Text(customer.address),
+                    title: Text('FullName: ${customer.firstName} ${customer.lastName}'),
+                    subtitle: Text('Address:'+ customer.address + ', DateOFBirth:' + customer.birthday),
                     onTap: () {
                       setState(() {
                         _selectedCustomer = customer;
