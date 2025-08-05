@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:floor/floor.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
-import 'dealership.dart';
-import 'dealership_dao.dart';
+import 'Data/Entity/dealership.dart';
+import 'Data/DAO/dealership_dao.dart';
 
 part 'app_database.g.dart';
 

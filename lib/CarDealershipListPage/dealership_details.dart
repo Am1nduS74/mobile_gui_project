@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dealership.dart';
+import 'Data/Entity/dealership.dart';
 import 'dealership_details_content.dart';
 import 'app_database.dart';
 import 'l10n/app_localizations.dart';

@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'dealership.dart';
+import '../Entity/dealership.dart';
 // Data Access object for dealerships
 @dao
 abstract class DealershipDao {

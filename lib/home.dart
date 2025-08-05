@@ -3,6 +3,7 @@ import 'CarListFeature/main.dart' as amindu;
 import 'package:flutter/material.dart';
 import 'CarSalesFeature/main.dart' as john;
 import 'CustomerListPage/CustomerListPage.dart' as ifeanyi;
+import 'CarDealershipListPage/main.dart' as balde;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -89,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const amindu.MyHomePage(),
+                      builder: (context) => const balde.MyApp(),
                     ),
                   );
                 },

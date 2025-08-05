@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'dealership.dart';
+import 'Data/Entity/dealership.dart';
 import 'dealership_form_page.dart';
 import 'l10n/app_localizations.dart';
 

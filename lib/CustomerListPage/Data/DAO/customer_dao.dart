@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'customer_list.dart';
+import '../Entity/customer_list.dart';
 //ifeanyi nnalue
 @dao
 abstract class CustomerDao {

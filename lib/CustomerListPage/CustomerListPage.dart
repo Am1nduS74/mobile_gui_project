@@ -5,9 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'package:intl/intl.dart';
 
-import 'customer_dao.dart';
+import 'Data/DAO/customer_dao.dart';
 import 'app_database.dart';
-import 'customer_list.dart';
+import 'Data/Entity/customer_list.dart';
 
 /// The main page for listing, adding, updating and deleting customers.
 /// Supports encrypted shared preferences, localization, snackbar, alert dialogs, and proper Floor integration.

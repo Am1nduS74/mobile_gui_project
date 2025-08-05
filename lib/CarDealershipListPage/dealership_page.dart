@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dealership.dart';
+import 'Data/Entity/dealership.dart';
 import 'dealership_details.dart';
 import 'dealership_details_content.dart';
 import 'dealership_form_page.dart';

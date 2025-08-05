@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_gui_project/CarListFeature/main.dart';
 import 'package:mobile_gui_project/CarSalesFeature/database.dart';
 
-import 'package:mobile_gui_project/CustomerListPage/customer_list.dart';
+import 'package:mobile_gui_project/CustomerListPage/Data/Entity/customer_list.dart';
 
 
 void main() {

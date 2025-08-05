@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:floor/floor.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
-import 'customer_list.dart';
-import 'customer_dao.dart';
+import 'Data/Entity/customer_list.dart';
+import 'Data/DAO/customer_dao.dart';
 
 part 'app_database.g.dart';
 //ifeanyi nnalue
